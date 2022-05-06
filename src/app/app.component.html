@@ -1,0 +1,77 @@
+<table style="width:65%;margin-left:auto;margin-right:auto;" class="table1">
+	<tr>
+		<td colspan="2" class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
+			<p class="counterandclock">{{RunningTotal}}</p>
+			<p class="counterandclock-notation">Running Total</p>
+		</td>
+		<td colspan="3" class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
+			<p class="counterandclock">{{Clock}}</p>
+			<p class="counterandclock-notation">Seconds running since last reset</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="statuscontainer td1">
+			<p class="finalmessage">{{FinalMessage}}</p>
+			<button class="button-effect button-openclose" (click)="openQueue()" [disabled]="!QueueIsClosed" [ngClass]="QueueIsClosed ? 'button-color2 button-clickable' : WaitingToFinish ? 'button-color4' : 'button-color1'">{{OpenOrClosedStatus}}</button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="buttonscontainer td1">
+			<table style="width:84%;margin-left:auto;margin-right:auto" class="table1-1">
+				<tr>
+					<td class="inputbuttoncontainer td1-1">
+						<div class="circle-wrapper">
+							<button class="circle circle-a button-clickable" (click)="halt_closeThenFinish()"></button>
+						</div>
+					<td class="inputbuttoncontainer td1-1">
+						<div class="circle-wrapper">
+							<button class="circle circle-b button-clickable" (click)="halt_finishThenClose()"></button>
+						</div>
+					</td>
+				</tr>
+				<td class="inputnotationcell td1-1">
+					<p style="margin-left:1em;margin-right:1em;">Finish all Tasks currently in Queue (close Queue to new Tasks) and display final result when complete.</p>
+				</td>
+				<td class="td1-1 inputnotationcell">
+					<p style="margin-left:1em;margin-right:1em;">Finish all Tasks currently in Queue (leave Queue open, so Tasks can still be added before completion) and display final result when complete.</p>
+				</td>
+			</table>
+		</td>
+	</tr>
+</table>
+<table style="width:56%;margin-top:5px;" class="table2">
+    <tr>
+        <td class="newtaskcontainer td2">
+            <fieldset class="newtaskgroup" style="width:70%">
+                <legend class="newtasklegend" style="text-align:left;">
+                    <div class="newtasktitle">Input Form</div>
+                </legend>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <div class="form__group">
+                        <input type="number" class="form__field" placeholder="" name="name" id="name" formControlName="taskValue" required />
+                        <label for="name" class="form__label">Add value to total</label>
+                    </div>
+                    <div class="form__group">
+                        <input type="number" class="form__field" placeholder="" name="second" id="second" formControlName="taskTime" step="0.1" required />
+                        <label for="second" class="form__label">Delay (in seconds)</label>
+                    </div>
+                </form>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td class="submitbuttonscontainer td2">
+            <table style="width:78%;margin-left:auto;margin-right:auto;" class="table2-1">
+                <td class="submitbuttonscell td2-1">
+                    <label for="submit-form">
+                        <button class="button-effect button-newtask button-clickable" [ngClass]="form.valid ? 'button-color1' : 'button-color3'" type="submit" [disabled]="!form.valid" (click)="onSubmit()">{{form.valid ? 'Submit New Task' : 'Invalid Input'}}</button>
+                    </label>
+                </td>
+                <td class="submitbuttonscell td2-1">
+                    <button class="button-effect button-color2 button-newtask button-clickable" (click)="reset()">Reset</button>
+                </td>
+            </table>
+        </td>
+    </tr>
+</table>
