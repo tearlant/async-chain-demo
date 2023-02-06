@@ -1,77 +1,110 @@
-<table style="width:65%;margin-left:auto;margin-right:auto;" class="table1">
-	<tr>
-		<td colspan="2" class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
-			<p class="counterandclock">{{RunningTotal}}</p>
-			<p class="counterandclock-notation">Running Total</p>
-		</td>
-		<td colspan="3" class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
-			<p class="counterandclock">{{Clock}}</p>
-			<p class="counterandclock-notation">Seconds running since last reset</p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="5" class="statuscontainer td1">
-			<p class="finalmessage">{{FinalMessage}}</p>
-			<button class="button-effect button-openclose" (click)="openQueue()" [disabled]="!QueueIsClosed" [ngClass]="QueueIsClosed ? 'button-color2 button-clickable' : WaitingToFinish ? 'button-color4' : 'button-color1'">{{OpenOrClosedStatus}}</button>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="5" class="buttonscontainer td1">
-			<table style="width:84%;margin-left:auto;margin-right:auto" class="table1-1">
-				<tr>
-					<td class="inputbuttoncontainer td1-1">
-						<div class="circle-wrapper">
-							<button class="circle circle-a button-clickable" (click)="halt_closeThenFinish()"></button>
-						</div>
-					<td class="inputbuttoncontainer td1-1">
-						<div class="circle-wrapper">
-							<button class="circle circle-b button-clickable" (click)="halt_finishThenClose()"></button>
-						</div>
-					</td>
-				</tr>
-				<td class="inputnotationcell td1-1">
-					<p style="margin-left:1em;margin-right:1em;">Finish all Tasks currently in Queue (close Queue to new Tasks) and display final result when complete.</p>
-				</td>
-				<td class="td1-1 inputnotationcell">
-					<p style="margin-left:1em;margin-right:1em;">Finish all Tasks currently in Queue (leave Queue open, so Tasks can still be added before completion) and display final result when complete.</p>
-				</td>
-			</table>
-		</td>
-	</tr>
-</table>
-<table style="width:56%;margin-top:5px;" class="table2">
-    <tr>
-        <td class="newtaskcontainer td2">
-            <fieldset class="newtaskgroup" style="width:70%">
-                <legend class="newtasklegend" style="text-align:left;">
-                    <div class="newtasktitle">Input Form</div>
-                </legend>
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-                    <div class="form__group">
-                        <input type="number" class="form__field" placeholder="" name="name" id="name" formControlName="taskValue" required />
-                        <label for="name" class="form__label">Add value to total</label>
+<main class="my-5 no-gutters">
+    <div class="container no-gutters" style="max-width:1500px;">
+        <section class="text-center no-gutters table1">
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-7 col-md-10 mb-4">
+                    <div class="accordion accordion-borderless" id="accordionFlushExampleX">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOneX">
+                                <button class="accordion-button" type="button" data-mdb-toggle="collapse"
+                                    data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
+                                Instructions (click to collapse/expand)
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOneX" class="accordion-collapse collapse show"
+                                aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
+                                <div class="accordion-body" style="text-align:left;color:#11bbff;">
+                                    <!--div class="accordion-body" style="text-align:left;background:green;color:black;"-->
+                                    <p>This app demonstrates a TypeScript library that allows forms to be processed sequentially and asynchronously. For example, if a high-traffic retail website needs to process many requests, it needs to do them in order if it has limited inventory and may sell out. It is surprisingly difficult to do this in JavaScript. The source code can be found <a href="https://github.com/tearlant/async-chain-demo">here</a>.</p>
+                                    <p>There is a simplified Web Form below to demonstrate a form submission. The Web Form has only two fields: The number to increment the Running Total by, and (to prove that the page remains responsive) the amount of time to delay before incrementing it. </p>
+                                    <p>Directions:</p>
+                                    <ol>
+                                        <li>In the form, fill out the two fields.</li>
+                                        <li> Click "Submit to Queue" to add a Task to the Queue. If you click multiple times to submit multiple Tasks, the Tasks will run sequentially. For example, suppose the current Running Total is 0. If you set the value to 4 and the delay to 5, and you click "Submit to Queue" twice, the Running Total will jump to 4 after 5 seconds, then jump to 8 after 10 seconds.</li>
+                                        <li>
+                                            To declare you want to get the Final Total, which may mean waiting for all tasks in the Queue to finish. There are two Halt buttons because you can do this in two ways:
+                                            <p></p>
+                                            <p>"Close Then Finish": By closing the queue to any new tasks, letting all tasks in the queue run out, and displaying the Final Total</p>
+                                            <p>"Finish Then Close": By leaving the queue open to new tasks, and only declaring the Final Total when the queue is empty.</p>
+                                        </li>
+                                        <li>The "Reset" button will reset the counter to zero and clear all tasks from the Queue.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form__group">
-                        <input type="number" class="form__field" placeholder="" name="second" id="second" formControlName="taskTime" step="0.1" required />
-                        <label for="second" class="form__label">Delay (in seconds)</label>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-3 col-sm-7 mb-4">
+                    <div class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
+                        <p class="counterandclock">{{RunningTotal}}</p>
+                        <p class="counterandclock-notation">Running Total</p>
                     </div>
-                </form>
-            </fieldset>
-        </td>
-    </tr>
-    <tr>
-        <td class="submitbuttonscontainer td2">
-            <table style="width:78%;margin-left:auto;margin-right:auto;" class="table2-1">
-                <td class="submitbuttonscell td2-1">
-                    <label for="submit-form">
-                        <button class="button-effect button-newtask button-clickable" [ngClass]="form.valid ? 'button-color1' : 'button-color3'" type="submit" [disabled]="!form.valid" (click)="onSubmit()">{{form.valid ? 'Submit New Task' : 'Invalid Input'}}</button>
-                    </label>
-                </td>
-                <td class="submitbuttonscell td2-1">
-                    <button class="button-effect button-color2 button-newtask button-clickable" (click)="reset()">Reset</button>
-                </td>
-            </table>
-        </td>
-    </tr>
-</table>
+                </div>
+                <div class="col-lg-5 col-sm-7 mb-4">
+                    <div class="td1" [ngClass]="ShowFinalMessage ? 'scoreboard' : 'scoreboard-alt'">
+                        <p class="counterandclock">{{Clock}}</p>
+                        <p class="counterandclock-notation">Seconds running since last reset</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-md-3 col-sm-6 mb-4"></div>
+                <div class="col-md-3 col-sm-6 mb-4"></div>
+            </div>
+            <!-- do I need to add col? -->
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-5 col-md-8 mb-4">
+                    <p class="finalmessage">{{FinalMessage}}</p>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-7 col-sm-10 mb-4">
+                    <button class="button-effect button-openclose" (click)="openQueue()" [disabled]="!QueueIsClosed" [ngClass]="QueueIsClosed ? 'button-color2 button-clickable' : WaitingToFinish ? 'button-color4' : 'button-color1'">{{OpenOrClosedStatus}}</button>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-3 col-md-4 col-sm-7 mb-4 inputbuttoncontainer td1-1">
+                    <div class="circle-wrapper">
+                        <button class="circle circle-a" (click)="halt_closeThenFinish()"></button>
+                    </div>
+                    <p style="margin-left:1em;margin-right:1em;margin-top:1em;">Halt (Close Then Finish)<br>Get final result from Tasks currently in Queue, and close Queue to new Tasks.</p>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-7 mb-4 inputbuttoncontainer td1-1">
+                    <div class="circle-wrapper">
+                        <button class="circle circle-b" (click)="halt_finishThenClose()"></button>
+                    </div>
+                    <p style="margin-left:1em;margin-right:1em;margin-top:1em;">Halt (Finish Then Close)<br>Get final result from Queue, but leave Queue open to new Tasks. Queue will be closed when it reaches completion.</p>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-7 col-sm-10 mb-4 newtaskcontainer td2">
+                    <fieldset class="newtaskgroup" style="width:70%">
+                        <legend class="newtasklegend" style="text-align:left;">
+                            <div class="newtasktitle">Input Form</div>
+                        </legend>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="form__group">
+                            <input type="number" class="form__field" placeholder="" name="name" id="name" formControlName="taskValue" required />
+                            <label for="name" class="form__label">Add value to total</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="number" class="form__field" placeholder="" name="second" id="second" formControlName="taskTime" step="0.1" required />
+                            <label for="second" class="form__label">Delay (in seconds)</label>
+                        </div>
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-3 col-md-4 col-sm-7 mb-4 submitbuttonscell td2-1">
+                    <button class="button-effect button-color1 button-newtask" [ngClass]="form.valid ? 'button-color1' : 'button-color3'" type="submit" [disabled]="!form.valid" (click)="onSubmit()">{{form.valid ? 'Submit to Queue' : 'Invalid Input'}}</button>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-7 mb-4 submitbuttonscell td2-1">
+                    <button class="button-effect button-color2 button-newtask" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

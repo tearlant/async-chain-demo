@@ -15,16 +15,14 @@ $accentlinewidth: 1px;
 
 
 /* Circles */
-$circlesize: 1.8;
-//$circle-a: #4BB543;
-//$circle-b: #CA0B00;
-$circle-a: #CA0B00;
-$circle-b: #4BB543;
+$circlesize: 2.3;
+$circle-a: #4BB543;
+$circle-b: #CA0B00;
 
 /* Light buttons */
 $queuebuttonsize: 1;
 $thinbuttonheight: 1.4em;
-$thickbuttonheight: 2em;
+$thickbuttonheight: 3.4em;
 
 :root {
   --tablefill1: #{$fillermain};
@@ -103,18 +101,16 @@ $thickbuttonheight: 2em;
   /* Text size */
   --countertext: 80px;
   --counternotationtext: 16px;
-  --finalmessagetext: 14px;
-  --newtasklabel: 12px;
-  --opencloselabel: 14px;
+  --finalmessagetext: 18x;
+  --opencloselabel: 22px;
 
 }
 
 body {
   background-color:#{$outermain};
   flex-direction: column;
-  font-family: 'Tw Cen MT', sans-serif;
-  /*font-family: 'Quicksand', sans-serif;*/
-  color: #{$maintext};
+  /*font-family: 'Tw Cen MT', sans-serif; */
+  /*font-family: 'Quicksand', sans-serif; */
 }
 
 table {
@@ -144,6 +140,7 @@ td {
   margin-right: auto;
   background-color: var(--tablefill1);
   border-color: var(--tableline1);
+  font-family: 'Quicksand', sans-serif;
 }
 
 .td1 {
@@ -173,12 +170,16 @@ fieldset {
   background-color: var(--scoreboardfill);
   color: var(--scoreboardtext);
   border: var(--scoreboardlinewidth) solid var(--scoreboardline);
+  border-radius: 16px;
+  -moz-border-radius:16px;  
 }
 
 .scoreboard-alt {
   background-color: var(--scoreboardtext);
   color: var(--scoreboardfill);
   border: var(--scoreboardlinewidth) solid var(--scoreboardline);
+  border-radius: 16px;
+  -moz-border-radius:16px;
 }
 
 .counterandclock {
@@ -215,6 +216,7 @@ fieldset {
   padding-bottom: var(--statusspacing);
   margin-top: 0px;
   margin-bottom: 0px;
+  color: var(--scoreboardtext);
 }
 
 /* Second internal table */
@@ -342,9 +344,8 @@ fieldset {
 }
 
 .button-newtask {
-  width: 167px;
+  width: 200px;
   line-height: $thickbuttonheight !important;
-  font-size: var(--newtasklabel);
 }
 
 .button-color1 {
@@ -356,11 +357,11 @@ fieldset {
 }
 
 .button-color2 {
-  --colorhex: #fd1b2c;
-  --colorhoverhex: #ff6249;
+  --colorhex: #fd1b9c;
+  --colorhoverhex: #ff82c9;
   --colorred: 253;
   --colorgreen: 27;
-  --colorblue: 44;
+  --colorblue: 156;
 }
 
 .button-color3 {
@@ -379,10 +380,6 @@ fieldset {
   --colorred: 225;
   --colorgreen: 212;
   --colorblue: 33;
-}
-
-.button-clickable {
-  cursor: pointer;
 }
 
 /* Animated Input Fields */
@@ -455,6 +452,7 @@ fieldset {
 .newtaskgroup {
   border: 2px solid var(--newtaskoutline);
   font-size: 20px;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   align-items: center;
   justify-content: center;
@@ -531,7 +529,7 @@ fieldset {
 }
 
 .circle-wrapper:hover .circle {
-  animation: spin #{calc($circlesize / 2)}s linear infinite;
+  animation: spin #{$circlesize / 2}s linear infinite;
 }
 
 .circle-a {
