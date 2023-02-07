@@ -1,6 +1,6 @@
 # Async Chain Demo
 
-This is a GUI to experiment with the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains.
+This is a GUI to experiment with the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
 
 ------------------------------------
 
