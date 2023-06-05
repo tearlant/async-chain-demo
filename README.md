@@ -3,7 +3,7 @@
 This app demonstrates a TypeScript library that allows web forms to be processed sequentially and asynchronously. For example, if a high-traffic retail website needs to process many requests, it needs to do them in order if it has limited inventory and may sell out. It is surprisingly difficult to do this in JavaScript, especially in a way that:
 
 1. Handles cancellations cleanly after a task is submitted, and
-2. Allows forms to still be submitted after the first task or tasks have started processing. 
+2. Allows forms to still be submitted after the first form or forms have started processing. 
 
 The central data structure is the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
 
