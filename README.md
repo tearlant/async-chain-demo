@@ -1,6 +1,8 @@
 # Async Chain Demo
 
-This is a GUI to experiment with the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
+This app demonstrates a TypeScript library that allows forms to be processed sequentially and asynchronously. For example, if a high-traffic retail website needs to process many requests, it needs to do them in order if it has limited inventory and may sell out. It is surprisingly difficult to do this in JavaScript.
+
+The central data structure is the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
 
 ------------------------------------
 
@@ -16,7 +18,7 @@ The example is served at localhost:4200
 
 ------------------------------------
 
-There are two fields, one to take a 'value' and one to take a 'time' (in seconds)
+In the demo, there is a simplified webfrom with two fields: one to take a 'value' and one to take a 'time' (in seconds)
 
 A task waits 'time' and then adds 'value' to the displayed running total. Clicking 'Submit Task'
 adds a task to the queue. For example, if a task is currently processing, and you submit a task
@@ -28,7 +30,7 @@ can still submit tasks while the task(s) in the queue are processing.
 
 The elapsed timer is to prove that the UI is still updating while the tasks are running asynchronously.
 
-Clicking the three buttons will allow the user to play with the functionality of the OPEN/CLOSED mechanism.
+Clicking the Halt buttons will allow the user to play with the functionality of the OPEN/CLOSED mechanism.
 The queue can be in either a "closed" or an "open" state. A closed queue can take new tasks, but will not start
 running until the queue is opened.
 
