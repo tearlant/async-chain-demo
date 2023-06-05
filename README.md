@@ -5,7 +5,7 @@ This app demonstrates a TypeScript library that allows web forms to be processed
 1. Handles cancellations cleanly after a task is submitted, and
 2. Allows forms to still be submitted after the first form or forms have started processing. 
 
-The central data structure is the AsyncChainQueue class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
+The central data structure is the `AsyncChainQueue` class. The Queue is built from the `Promise` class, using a Kleisli arrow category pattern to build categorical chains. The project is hosted at https://tearlant.github.io/async-chain-demo/
 
 ------------------------------------
 
